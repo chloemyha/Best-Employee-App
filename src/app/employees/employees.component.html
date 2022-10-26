@@ -1,25 +1,20 @@
 <h2>My Employees</h2>
+<ul class ="employees">
+    <li *ngFor="let employee of employees">
+        <button [class.selected] ="employee === selectedEmployee" type ="button" (click) = "onSelect(employee)">
+            <span class ="badge">{{employee.id}}</span>
+            <span class ="name">{{employee.name}}</span>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Role</th>
-      <th scope="col">StartDate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let employee of employees; index as i">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>
-        <ngb-highlight [result]="employee.name"></ngb-highlight>
-      </td>
-      <td><ngb-highlight [result]="employee.role"></ngb-highlight></td>
-      <td>
-        <ngb-highlight [result]="employee.startdate | date"></ngb-highlight>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+        </button>
+    </li>
+</ul>
+<div *ngIf="selectedEmployee">
+    <h2>{{selectedEmployee.name | uppercase}} Details</h2>
+    <div>ID: {{selectedEmployee.id}}</div>
+    <div>
+      <label for="employee-name">Employee name: </label>
+      <input id="employee-name" [(ngModel)]="selectedEmployee.name" placeholder="name">
+    </div>
+    <div>Role: {{selectedEmployee.role}}</div>
+    <div>Start Date: {{selectedEmployee.startdate | date:"full"}}</div>
+  </div>

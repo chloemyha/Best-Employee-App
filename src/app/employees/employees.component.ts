@@ -1,7 +1,6 @@
-import { Component, OnInit, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { EMPLOYEES } from '../mock-employees';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,18 +9,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
-  employee: Employee ={
-    id:1,
-    name :"Bob Smith",
-    role : "Product Manager",
-    startdate: "Jun 15,2015"
   
-  };
   employees = EMPLOYEES;
+  selectedEmployee?: Employee;
   constructor() { }
 
   ngOnInit(): void {
   }
- 
+  
+ onSelect (employee:Employee): void {
+  this.selectedEmployee = employee;
+ }
 
 }
