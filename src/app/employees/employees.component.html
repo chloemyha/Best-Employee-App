@@ -1,0 +1,25 @@
+<h2>My Employees</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Role</th>
+      <th scope="col">StartDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <ngb-highlight [result]="employee.name"></ngb-highlight>
+      </td>
+      <td><ngb-highlight [result]="employee.role"></ngb-highlight></td>
+      <td>
+        <ngb-highlight [result]="employee.startdate | date"></ngb-highlight>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
