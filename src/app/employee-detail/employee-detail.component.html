@@ -1,0 +1,11 @@
+<div *ngIf="employee">
+
+    <h2>{{employee.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{employee.id}}</div>
+    <div>
+      <label for="employee-name">Employee name: </label>
+      <input id="employee-name" [(ngModel)]="employee.name" placeholder="name">
+    </div>
+    <div><span>Role: </span>{{employee.role}}</div>
+    <div><span>Start Date: </span>{{employee.startdate | date:"full"}}</div>
+  </div>

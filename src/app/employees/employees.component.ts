@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
-import { EMPLOYEES } from '../mock-employees';
-
+import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
+import { EmployeeService } from '../employee.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-employees',
@@ -10,15 +11,21 @@ import { EMPLOYEES } from '../mock-employees';
 })
 export class EmployeesComponent implements OnInit {
   
-  employees = EMPLOYEES;
+  employee: Employee[] = [];
   selectedEmployee?: Employee;
-  constructor() { }
+  constructor(private employeeService: EmployeeService, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.getEmployees();
   }
   
  onSelect (employee:Employee): void {
   this.selectedEmployee = employee;
+  this.messageService.add(`EmployeesComponent: Selected employee id=${employee.id}`);
  }
+ getEmployees(): void {
+  this.employeeService.getEmployees()
+      .subscribe(employees => this.employee = employees);
+}
 
 }

@@ -5,14 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // <-- NgModel lives here
-import { Observable } from 'rxjs';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { MessagesComponent } from './messages/messages.component'; // <-- NgModel lives here
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
+    EmployeeDetailComponent,
+    MessagesComponent,
     
+
   ],
   imports: [
     BrowserModule,
