@@ -1,11 +1,25 @@
 <div *ngIf="employee">
-
-    <h2>{{employee.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{employee.id}}</div>
-    <div>
-      <label for="employee-name">Employee name: </label>
-      <input id="employee-name" [(ngModel)]="employee.name" placeholder="name">
-    </div>
-    <div><span>Role: </span>{{employee.role}}</div>
-    <div><span>Start Date: </span>{{employee.startdate | date:"full"}}</div>
+  <h2>{{ employee.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{ employee.id }}</div>
+  <div>
+    <label for="employee-name">Employee name: </label>
+    <input id="employee-name" [(ngModel)]="employee.name" placeholder="name" />
   </div>
+  <div>
+    <label for="employee-role">Role: </label>
+    <input id="employee-role" [(ngModel)]="employee.role" placeholder="role" />
+  </div>
+  <div>
+    <label for="employee-startdate">Start Date: </label>
+    <input
+      id="employee-startdate"
+      [(ngModel)]="employee.startdate"
+      placeholder="startdate"
+    />
+  </div>
+</div>
+
+<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <button type="button" class="btn btn-warning"(click)="goBack()">Go Back</button>
+  <button type="button" class="btn btn-success"(click)="save()">Save</button>
+</div>

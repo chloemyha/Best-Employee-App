@@ -1,0 +1,12 @@
+<h2>Top Employees</h2>
+<div class="employees-menu">
+  <a *ngFor="let employee of employees"  
+  routerLink="/detail/{{employee.id}}">
+    
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary">{{employee.name}}</button>
+        
+      </div>
+   
+  </a>
+</div>

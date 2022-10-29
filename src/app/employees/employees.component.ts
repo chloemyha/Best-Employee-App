@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
-import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 import { EmployeeService } from '../employee.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-employees',
@@ -12,20 +10,27 @@ import { MessageService } from '../message.service';
 export class EmployeesComponent implements OnInit {
   
   employee: Employee[] = [];
-  selectedEmployee?: Employee;
-  constructor(private employeeService: EmployeeService, private messageService: MessageService) { }
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
     this.getEmployees();
   }
   
- onSelect (employee:Employee): void {
-  this.selectedEmployee = employee;
-  this.messageService.add(`EmployeesComponent: Selected employee id=${employee.id}`);
- }
+ 
  getEmployees(): void {
   this.employeeService.getEmployees()
       .subscribe(employees => this.employee = employees);
 }
-
+add(name: string): void {
+  name = name.trim();
+  if (!name) { return; }
+  this.employeeService.addEmployee({ name } as Employee)
+    .subscribe(employee => {
+      this.employee.push(employee);
+    });
+}
+delete(employee: Employee): void {
+  this.employee = this.employee.filter(h => h !== employee);
+  this.employeeService.deleteEmployee(employee.id).subscribe();
+}
 }
