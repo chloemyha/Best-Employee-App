@@ -51,6 +51,19 @@ deleteEmployee(id: number): Observable<Employee> {
     catchError(this.handleError<Employee>('deleteEmployee'))
   );
 }
+/* GET employees whose name contains search term */
+searchEmployees(term: string): Observable<Employee[]> {
+  if (!term.trim()) {
+    // if not search term, return empty employee array.
+    return of([]);
+  }
+  return this.http.get<Employee[]>(`${this.employeesUrl}/?name=${term}`).pipe(
+    tap(x => x.length ?
+       this.log(`found employees matching "${term}"`) :
+       this.log(`no employees matching "${term}"`)),
+    catchError(this.handleError<Employee[]>('searchEmployees', []))
+  );
+}
   /**
    * Handle Http operation that failed.
    * Let the app continue.
